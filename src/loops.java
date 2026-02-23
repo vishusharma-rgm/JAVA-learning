@@ -47,8 +47,13 @@ public class loops {
         do
          {
 
-         }while()
+         }while(n!=1);
          */
+        int n =1;
+        do{
+            System.out.println("fghjkl");
+
+        }while(n!=1);
 
 
     }
