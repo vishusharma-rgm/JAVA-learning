@@ -8,6 +8,7 @@ public class casecheck {
 
         System.out.println("Enter a character:");
         
+        
 
     }
 }

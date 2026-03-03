@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class functionAndmethod {
+public class functionAndmethod{
     public static void main(String[] args) {
         
         // Q:1 -- take a input of 2 number and print sum
@@ -29,21 +29,14 @@ public class functionAndmethod {
     static void sum(){
         Scanner in = new Scanner(System.in);
          System.out.print("Enter first number: ");
-    int a = in.nextInt();
+    int a = in.nextInt(); 
 
     System.out.println("Enter Seocnd number:");
     int b = in.nextInt();
 
     int sum = a+b;
     System.out.println("Sum is "+ sum);
-    
-
-
-    }
-
-
-    
-
-    }
+     }
+ }
     
 
