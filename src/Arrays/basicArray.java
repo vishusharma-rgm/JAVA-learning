@@ -22,7 +22,7 @@ public class basicArray {
     // by using arrays
     int [] rnos = new int [5];
     // or directly 
-    int[] rnos2 = {2,3,4,5}; 
+    int[] rnos2 = {2,3,4,5};  
     
     
     
