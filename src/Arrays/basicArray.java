@@ -24,6 +24,7 @@ public class basicArray {
     // or directly 
     int[] rnos2 = {2,3,4,5};  
     System.out.println();
+    System.out.println();
     
     
     
