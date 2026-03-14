@@ -30,5 +30,3 @@ public class basicArray {
     System.out.println();
     
     System.out.println();
-}
-}
