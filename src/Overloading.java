@@ -12,10 +12,7 @@ public class Overloading {
     static void fun(String name){
         System.out.println(name);
 
-       System.out.println();
-       System.out.println();
-       System.out.println();
-       System.out.println();
+       
     }
 
 }
