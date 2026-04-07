@@ -1,25 +1,31 @@
 package Sorting;
 
+import java.util.Arrays;
+
 public class main {
-    
+ public static void main(String[] args) {
+    int arr[]= {5,4,3,2,1};
+    insertion(arr);
+    System.out.println(Arrays.toString(arr));
 
-    public static void main(String[] args) {
-        int[] arr = {5, 3, 4, 1, 2};
-        insertion(arr);
-        System.out.println(java.util.Arrays.toString(arr));
-    }
+ }
+    //  Insertion Sort
 
-    static void insertion(int[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = i+1; j > 0; j--) {
-                if (arr[j] < arr[j-1]) {
-                    swap(arr, j, j-1);
-                } else {
+    static void insertion (int[]arr){
+        for(int i=0; i<arr.length-1;i++){
+            for(int j=i+1; j>0; j--){
+                if(arr[j]<arr[j-1]){
+                    // swap
+                    swap(arr,j,j-1);
+
+                }else{
                     break;
                 }
             }
         }
     }
+
+    // Selection Sort
 
     static void selection(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
@@ -46,29 +52,31 @@ public class main {
         return max;
     }
 
-    static void bubble(int[] arr) {
+
+    // Bubble Sort
+
+    static void bubble(int[]arr){
         boolean swapped;
-        // run the steps n-1 times
-        for (int i = 0; i < arr.length; i++) {
-            swapped = false;
-            // for each step, max item will come at the last respective index
-            for (int j = 1; j < arr.length - i; j++) {
-                // swap if the item is smaller than the previous item
-                if (arr[j] < arr[j-1]) {
+        // run the stem n-1 times
+        for(int i=0; i<arr.length;i++){
+            swapped =false;
+             // for each step, max item will come at the last respective index
+             for(int j=1; j<arr.length-i; j++){
+                // swap if the item is smaller them the previous element
+                if(arr[j]<arr[j-1]){
                     // swap
                     int temp = arr[j];
-                    arr[j] = arr[j-1];
-                    arr[j-1] = temp;
+                    arr[j]= arr[j-1];
+                    arr[j-1]= temp;
                     swapped = true;
                 }
-            }
-            // if you did not swap for a particular value of i, it means the array is sorted hence stop the program
+             }
+              // if you did not swap for a particular value of i, it means the array is sorted hence stop the program
             if (!swapped) { // !false = true
                 break;
             }
-        }
-    }
 
-    
-    
-}
+        }
+
+    }
+ }   

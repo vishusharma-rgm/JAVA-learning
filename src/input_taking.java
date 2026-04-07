@@ -5,8 +5,8 @@ public class input_taking {
 
 public class taking_input {
     public static void main(String[] args) {
-       System.out.println("taking input from user");
-       Scanner sc = new Scanner(System.in);
+       // System.out.println("taking input from user");
+       // Scanner sc = new Scanner(System.in);
 //       System.out.println("enter number 1");
 //       int a = sc.nextInt();
 //       System.out.println("enter number 2");
@@ -16,16 +16,22 @@ public class taking_input {
 
 //       int sum = a + c;
 //       float sum1 = b + c;
-       boolean b1 = sc.hasNextBoolean();
+       // boolean b1 = sc.hasNextBoolean();
 //       String str = sc.nextLine();
 
 //       System.out.println("the sum of these number is ");
 //       System.out.println(sum1);
 //       System.out.println(sum);
-       System.out.println(b1);
+       // System.out.println(b1);
 //       System.out.println(str);
 
 
+for(int i= 1; i<=10; i++){
+       boolean result =(i==6);
+       if(result) break;
+       System.out.println(result);
+       
+}
         }
     }
 

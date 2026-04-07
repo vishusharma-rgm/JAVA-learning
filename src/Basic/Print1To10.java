@@ -1,4 +1,5 @@
-public class Basic {
+package Basic;
+public class Print1To10 {
     public static void main(String[] args) {
     //    int a = 10;
     //     if(a==10){
@@ -12,19 +13,13 @@ public class Basic {
     //     count++;
     //    }
 
-    for(int count =1; count!=5; count++){
+    for(int count =1; count!=11; count++){
         System.out.println(count);
         count++;
-
-
-    for(int counts=1; count!=5; count++){
-        System.out.println(count);
-        count++;
-        
-    }
+    
     
     }
+}
+}
 
-    
-}
-}
+
