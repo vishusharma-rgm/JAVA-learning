@@ -1,7 +1,7 @@
 package CheetSheet.Leetcode;
 
 import java.util.Scanner;
-public class ReverseString_7 {
+public class ReverseIntiger_7 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println(" enter a string:");
