@@ -1,6 +1,7 @@
 package DSA;
 import java.util.*;
-
+// https://leetcode.com/problems/create-target-array-in-the-given-order/submissions/1957045658
+// 1389. Create Target Array in the Given Order
 class Solution {
     public int[] createTargetArray(int[] nums, int[] index) {
         List<Integer> list = new ArrayList<>();
