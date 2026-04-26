@@ -1,5 +1,6 @@
 package DSA;
 // https://leetcode.com/problems/check-if-the-sentence-is-pangram/submissions/1957045658
+// 1832. Check if the Sentence Is Pangram
 class Solution{
 public boolean checkIfPangram(String sentence) {
         
