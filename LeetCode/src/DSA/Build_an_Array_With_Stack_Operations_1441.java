@@ -1,7 +1,7 @@
 package DSA;
 import java.util.List;
 import java.util.ArrayList;
-
+// 1441. Build an Array With Stack Operations
 class Solution {
     public List<String> buildArray(int[] target, int n) {
         List<String> result = new ArrayList<>();
