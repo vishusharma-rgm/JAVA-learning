@@ -1,6 +1,7 @@
 package DSA;
 // // https://leetcode.com/problems/count-items-matching-a-rule/
 class Solution {
+    // 1773. Count Items Matching a Rule
 
 //     // function jo answer return karega
 //     public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
