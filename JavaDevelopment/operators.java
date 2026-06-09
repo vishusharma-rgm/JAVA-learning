@@ -12,6 +12,7 @@ public class operators {
             // ++num1;  post-increment
                 // num1--; post-decrement
                 // --num1; pre-decrement
+                
 
 
          System.out.println(num1);
