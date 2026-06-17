@@ -1,34 +1,21 @@
 package MATH;
 
-import java.util.Scanner;
-
-class adddigit {
+public class addDigit {
+    public static int addDigits(int num) {
+        while (num >= 10) {
+            int sum = 0;
+            while (num > 0) {
+                sum += num % 10;
+                num /= 10;
+            }
+            num = sum;
+        }
+        return num;
+    }
 
     public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter number: ");
-        int num = sc.nextInt();
-
-        Solution s = new Solution();
-
-        int result = s.addDigits(num);
-
-        System.out.println("Answer = " + result);
-
-        sc.close();
+        int num = 38;
+        System.out.println(addDigits(num)); // Output: 2
     }
-}
-
-class Solution {
-
-    public int addDigits(int num) {
-
-        if(num == 0){
-            return 0;
-        }
-
-        return 1 + (num - 1) % 9;
-    }
+    
 }
