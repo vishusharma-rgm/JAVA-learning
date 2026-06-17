@@ -6,7 +6,12 @@ public class casecheck {
         Scanner in = new Scanner(System.in);
         //  char ch = in.next().trim().charAt(0);
 
-        System.out.println("Enter a character:");
+        System.out.println(" Enter a character:");
+
+        
+
+    
+
         
         
 
