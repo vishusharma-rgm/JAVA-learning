@@ -1,3 +1,4 @@
+// This is a simple Java program that demonstrates the use of switch statements. It assigns a day number to the variable 'day' and uses a switch statement to determine the corresponding day name. The program then prints out the name of the day based on the value of 'day'. If the value of 'day' does not match any case, it defaults to "Invalid day".
 package JavaDevelopment;
 
 public class SwitchStatements {
