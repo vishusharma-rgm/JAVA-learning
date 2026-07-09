@@ -17,7 +17,7 @@ package CodeForce;
 import java.io.*;
 import java.util.*;
 
-public class SlowFast {
+public class JavaTemplate {
 
     // ---------- FAST INPUT READER ----------
     // Scanner slow hota hai bade inputs ke liye (TLE de sakta hai).
