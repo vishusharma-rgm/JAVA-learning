@@ -1,3 +1,4 @@
+// https://codeforces.com/problemset/problem/2228/A
 package CodeForce.Implementation;
 
 import java.io.BufferedReader;
