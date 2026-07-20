@@ -1,4 +1,7 @@
-package JavaDevelopment;
+package JavaDevelopment.ConditionalStatements;
+
+public class conditionalStatement {
+
 
 public class ConditionaStatements {
     public static void main(String[] args) {
@@ -31,3 +34,6 @@ public class ConditionaStatements {
      
     
 
+
+    
+}

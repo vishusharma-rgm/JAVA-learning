@@ -13,14 +13,13 @@ public class AntimedianDeletion221A {
 
         while(t-- > 0) {
             int n = Integer.parseInt(br.readLine());
-            String[] arr = br.readLine().split(" ");
+            String[] arr = br.readLine().split(" ");;
             
-            // arr ki value ka use nahi, bas line consume karni thi
             
             if(n == 1) {
                 ans.append(1);
                 ans.append("\n");
-            } else {
+            } else { 
                 for(int i = 1; i <= n; i++) {
                     ans.append(2);
                     if(i < n) ans.append(" ");
