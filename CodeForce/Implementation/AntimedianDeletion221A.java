@@ -9,7 +9,7 @@ public class AntimedianDeletion221A {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine());
-        StringBuilder ans = new StringBuilder();
+        StringBuilder ans = new StringBuilder()
 
         while(t-- > 0) {
             int n = Integer.parseInt(br.readLine());
