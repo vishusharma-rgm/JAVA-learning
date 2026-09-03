@@ -3,6 +3,9 @@ import java.util.InputMismatchException;
 
 public class StrassenMatrixMultiplication {
 
+    // Used to control indentation in recursive calls
+    private static int level = 0;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -12,17 +15,23 @@ public class StrassenMatrixMultiplication {
             int numberOfMatrices = sc.nextInt();
 
             if (numberOfMatrices != 2) {
-                System.out.println("Error: This program requires exactly 2 matrices.");
+                System.out.println(
+                    "Error: This program requires exactly 2 matrices."
+                );
                 return;
             }
 
             // Ask matrix size
-            System.out.print("Enter the size of matrices (power of 2): ");
+            System.out.print(
+                "Enter the size of matrices (power of 2): "
+            );
             int n = sc.nextInt();
 
             // Check valid matrix size
             if (n <= 0 || (n & (n - 1)) != 0) {
-                System.out.println("Error: Matrix size must be a positive power of 2.");
+                System.out.println(
+                    "Error: Matrix size must be a positive power of 2."
+                );
                 return;
             }
 
@@ -30,7 +39,8 @@ public class StrassenMatrixMultiplication {
             int[][] B = new int[n][n];
 
             // Input Matrix A
-            System.out.println("Enter elements of Matrix A:");
+            System.out.println("\nEnter elements of Matrix A:");
+
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     A[i][j] = sc.nextInt();
@@ -38,7 +48,8 @@ public class StrassenMatrixMultiplication {
             }
 
             // Input Matrix B
-            System.out.println("Enter elements of Matrix B:");
+            System.out.println("\nEnter elements of Matrix B:");
+
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     B[i][j] = sc.nextInt();
@@ -46,41 +57,67 @@ public class StrassenMatrixMultiplication {
             }
 
             // Display matrices
+            System.out.println("\n========== INPUT MATRICES ==========");
+
             System.out.println("\nMatrix A:");
             printMatrix(A);
 
             System.out.println("\nMatrix B:");
             printMatrix(B);
 
-            // Multiply using Strassen
+            // Start Strassen
+            System.out.println("\n========== STRASSEN PROCESS ==========");
+
             int[][] result = strassen(A, B);
 
-            // Display result
-            System.out.println("\nResult of Matrix Multiplication:");
+            // Final result
+            System.out.println("\n========== FINAL RESULT ==========");
+
             printMatrix(result);
 
         } catch (InputMismatchException e) {
-            System.out.println("Error: Invalid input! Please enter integers only.");
+
+            System.out.println(
+                "Error: Invalid input! Please enter integers only."
+            );
+
         } finally {
             sc.close();
         }
     }
 
-    // Strassen Matrix Multiplication
+    // =========================================================
+    // STRASSEN MATRIX MULTIPLICATION
+    // =========================================================
+
     private static int[][] strassen(int[][] a, int[][] b) {
 
         int n = a.length;
 
-        // Base case: 1 x 1 matrix
+        // Base case
         if (n == 1) {
+
+            int value = a[0][0] * b[0][0];
+
+            printIndent();
+            System.out.println(
+                "Base multiplication: "
+                + a[0][0] + " × "
+                + b[0][0] + " = "
+                + value
+            );
+
             return new int[][] {
-                { a[0][0] * b[0][0] }
+                { value }
             };
         }
 
         int newSize = n / 2;
 
+        // -----------------------------------------------------
         // Create submatrices
+        // -----------------------------------------------------
+
         int[][] a11 = new int[newSize][newSize];
         int[][] a12 = new int[newSize][newSize];
         int[][] a21 = new int[newSize][newSize];
@@ -91,101 +128,371 @@ public class StrassenMatrixMultiplication {
         int[][] b21 = new int[newSize][newSize];
         int[][] b22 = new int[newSize][newSize];
 
-        // Divide matrices into four parts
+        // Divide A and B into four parts
         for (int i = 0; i < newSize; i++) {
+
             for (int j = 0; j < newSize; j++) {
 
                 a11[i][j] = a[i][j];
+
                 a12[i][j] = a[i][j + newSize];
+
                 a21[i][j] = a[i + newSize][j];
-                a22[i][j] = a[i + newSize][j + newSize];
+
+                a22[i][j] =
+                    a[i + newSize][j + newSize];
 
                 b11[i][j] = b[i][j];
-                b12[i][j] = b[i][j + newSize];
-                b21[i][j] = b[i + newSize][j];
-                b22[i][j] = b[i + newSize][j + newSize];
+
+                b12[i][j] =
+                    b[i][j + newSize];
+
+                b21[i][j] =
+                    b[i + newSize][j];
+
+                b22[i][j] =
+                    b[i + newSize][j + newSize];
             }
         }
 
-        // Strassen's seven multiplications
-        int[][] m1 = strassen(add(a11, a22), add(b11, b22));
+        // -----------------------------------------------------
+        // Display divided matrices
+        // -----------------------------------------------------
 
-        int[][] m2 = strassen(add(a21, a22), b11);
+        printIndent();
+        System.out.println("\n--- Dividing " + n + "x" + n + " Matrices ---");
 
-        int[][] m3 = strassen(a11, subtract(b12, b22));
+        printIndent();
+        System.out.println("A11:");
+        printMatrixWithIndent(a11);
 
-        int[][] m4 = strassen(a22, subtract(b21, b11));
+        printIndent();
+        System.out.println("A12:");
+        printMatrixWithIndent(a12);
 
-        int[][] m5 = strassen(add(a11, a12), b22);
+        printIndent();
+        System.out.println("A21:");
+        printMatrixWithIndent(a21);
 
-        int[][] m6 = strassen(subtract(a21, a11), add(b11, b12));
+        printIndent();
+        System.out.println("A22:");
+        printMatrixWithIndent(a22);
 
-        int[][] m7 = strassen(subtract(a12, a22), add(b21, b22));
+        printIndent();
+        System.out.println("B11:");
+        printMatrixWithIndent(b11);
 
-        // Calculate result submatrices
-        int[][] c11 = add(subtract(add(m1, m4), m5), m7);
+        printIndent();
+        System.out.println("B12:");
+        printMatrixWithIndent(b12);
 
-        int[][] c12 = add(m3, m5);
+        printIndent();
+        System.out.println("B21:");
+        printMatrixWithIndent(b21);
 
-        int[][] c21 = add(m2, m4);
+        printIndent();
+        System.out.println("B22:");
+        printMatrixWithIndent(b22);
 
-        int[][] c22 = add(subtract(add(m1, m3), m2), m6);
+        // -----------------------------------------------------
+        // Strassen's seven products
+        // -----------------------------------------------------
 
-        // Combine result submatrices
+        printIndent();
+        System.out.println("\n--- Calculating M1 ---");
+
+        int[][] m1 = strassen(
+            add(a11, a22),
+            add(b11, b22)
+        );
+
+        printIndent();
+        System.out.println("M1 = (A11 + A22) × (B11 + B22)");
+        printIndent();
+        System.out.println("M1:");
+        printMatrixWithIndent(m1);
+
+
+        printIndent();
+        System.out.println("\n--- Calculating M2 ---");
+
+        int[][] m2 = strassen(
+            add(a21, a22),
+            b11
+        );
+
+        printIndent();
+        System.out.println("M2 = (A21 + A22) × B11");
+        printIndent();
+        System.out.println("M2:");
+        printMatrixWithIndent(m2);
+
+
+        printIndent();
+        System.out.println("\n--- Calculating M3 ---");
+
+        int[][] m3 = strassen(
+            a11,
+            subtract(b12, b22)
+        );
+
+        printIndent();
+        System.out.println("M3 = A11 × (B12 - B22)");
+        printIndent();
+        System.out.println("M3:");
+        printMatrixWithIndent(m3);
+
+
+        printIndent();
+        System.out.println("\n--- Calculating M4 ---");
+
+        int[][] m4 = strassen(
+            a22,
+            subtract(b21, b11)
+        );
+
+        printIndent();
+        System.out.println("M4 = A22 × (B21 - B11)");
+        printIndent();
+        System.out.println("M4:");
+        printMatrixWithIndent(m4);
+
+
+        printIndent();
+        System.out.println("\n--- Calculating M5 ---");
+
+        int[][] m5 = strassen(
+            add(a11, a12),
+            b22
+        );
+
+        printIndent();
+        System.out.println("M5 = (A11 + A12) × B22");
+        printIndent();
+        System.out.println("M5:");
+        printMatrixWithIndent(m5);
+
+
+        printIndent();
+        System.out.println("\n--- Calculating M6 ---");
+
+        int[][] m6 = strassen(
+            subtract(a21, a11),
+            add(b11, b12)
+        );
+
+        printIndent();
+        System.out.println(
+            "M6 = (A21 - A11) × (B11 + B12)"
+        );
+
+        printIndent();
+        System.out.println("M6:");
+        printMatrixWithIndent(m6);
+
+
+        printIndent();
+        System.out.println("\n--- Calculating M7 ---");
+
+        int[][] m7 = strassen(
+            subtract(a12, a22),
+            add(b21, b22)
+        );
+
+        printIndent();
+        System.out.println(
+            "M7 = (A12 - A22) × (B21 + B22)"
+        );
+
+        printIndent();
+        System.out.println("M7:");
+        printMatrixWithIndent(m7);
+
+        // -----------------------------------------------------
+        // Calculate C matrices
+        // -----------------------------------------------------
+
+        printIndent();
+        System.out.println("\n--- Calculating C Matrices ---");
+
+        int[][] c11 =
+            add(
+                subtract(
+                    add(m1, m4),
+                    m5
+                ),
+                m7
+            );
+
+        int[][] c12 =
+            add(m3, m5);
+
+        int[][] c21 =
+            add(m2, m4);
+
+        int[][] c22 =
+            add(
+                subtract(
+                    add(m1, m3),
+                    m2
+                ),
+                m6
+            );
+
+        printIndent();
+        System.out.println("C11 = M1 + M4 - M5 + M7");
+        printIndent();
+        System.out.println("C11:");
+        printMatrixWithIndent(c11);
+
+        printIndent();
+        System.out.println("C12 = M3 + M5");
+        printIndent();
+        System.out.println("C12:");
+        printMatrixWithIndent(c12);
+
+        printIndent();
+        System.out.println("C21 = M2 + M4");
+        printIndent();
+        System.out.println("C21:");
+        printMatrixWithIndent(c21);
+
+        printIndent();
+        System.out.println(
+            "C22 = M1 - M2 + M3 + M6"
+        );
+
+        printIndent();
+        System.out.println("C22:");
+        printMatrixWithIndent(c22);
+
+        // -----------------------------------------------------
+        // Combine C matrices
+        // -----------------------------------------------------
+
         int[][] result = new int[n][n];
 
         for (int i = 0; i < newSize; i++) {
+
             for (int j = 0; j < newSize; j++) {
 
-                result[i][j] = c11[i][j];
-                result[i][j + newSize] = c12[i][j];
-                result[i + newSize][j] = c21[i][j];
-                result[i + newSize][j + newSize] = c22[i][j];
+                result[i][j] =
+                    c11[i][j];
+
+                result[i][j + newSize] =
+                    c12[i][j];
+
+                result[i + newSize][j] =
+                    c21[i][j];
+
+                result[i + newSize][j + newSize] =
+                    c22[i][j];
             }
         }
 
         return result;
     }
 
-    // Matrix addition
+    // =========================================================
+    // MATRIX ADDITION
+    // =========================================================
+
     private static int[][] add(int[][] a, int[][] b) {
 
         int n = a.length;
-        int[][] result = new int[n][n];
+
+        int[][] result =
+            new int[n][n];
 
         for (int i = 0; i < n; i++) {
+
             for (int j = 0; j < n; j++) {
-                result[i][j] = a[i][j] + b[i][j];
+
+                result[i][j] =
+                    a[i][j] + b[i][j];
             }
         }
 
         return result;
     }
 
-    // Matrix subtraction
-    private static int[][] subtract(int[][] a, int[][] b) {
+    // =========================================================
+    // MATRIX SUBTRACTION
+    // =========================================================
+
+    private static int[][] subtract(
+        int[][] a,
+        int[][] b
+    ) {
 
         int n = a.length;
-        int[][] result = new int[n][n];
+
+        int[][] result =
+            new int[n][n];
 
         for (int i = 0; i < n; i++) {
+
             for (int j = 0; j < n; j++) {
-                result[i][j] = a[i][j] - b[i][j];
+
+                result[i][j] =
+                    a[i][j] - b[i][j];
             }
         }
 
         return result;
     }
 
-    // Print matrix
+    // =========================================================
+    // PRINT MATRIX
+    // =========================================================
+
     private static void printMatrix(int[][] a) {
 
         for (int i = 0; i < a.length; i++) {
+
             for (int j = 0; j < a[i].length; j++) {
-                System.out.print(a[i][j] + " ");
+
+                System.out.print(
+                    a[i][j] + " "
+                );
             }
+
             System.out.println();
         }
     }
-}
 
+    // =========================================================
+    // PRINT MATRIX WITH INDENTATION
+    // =========================================================
+
+    private static void printMatrixWithIndent(
+        int[][] a
+    ) {
+
+        for (int i = 0; i < a.length; i++) {
+
+            printIndent();
+
+            for (int j = 0; j < a[i].length; j++) {
+
+                System.out.print(
+                    a[i][j] + " "
+                );
+            }
+
+            System.out.println();
+        }
+    }
+
+    // =========================================================
+    // INDENTATION
+    // =========================================================
+
+    private static void printIndent() {
+
+        for (int i = 0; i < level; i++) {
+
+            System.out.print("    ");
+        }
+    }
+}
