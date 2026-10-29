@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class Main{
-    public static void main(String[] args){
+    public static void main(String[]args){
         Scanner sc = new Scanner(System.in);
         
         int t = sc.nextInt();
@@ -8,11 +8,14 @@ public class Main{
             
             int n = sc.nextInt();
             
-            if(n%3==0){
-                System.out.println("Second");
-                
+            int[] a = new int[n];
+            for(int i =0; i<n; i++){
+                a[i]= sc.nextInt();
+            }
+            if(a[0]==1){
+                System.out.println("YES");
             }else{
-                System.out.println("First");
+                System.out.println("NO");
             }
         }
     }
